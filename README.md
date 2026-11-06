@@ -1,7 +1,5 @@
 # mac_cpy
 
-[Русская версия](readme_ru.md)
-
 Selective macOS home-directory backup and restore, written in Rust. Files are streamed directly into a `.tar.gz` archive at the destination using macOS's built-in `/usr/bin/tar`. No second local copy of the selected data is created.
 
 The archive includes the selected files, configuration snapshots, a Homebrew manifest when available, an application inventory, a copy of `/etc/hosts`, and the running `mac_cpy` executable. A separate SHA-256 file accompanies the archive.
