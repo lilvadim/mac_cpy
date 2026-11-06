@@ -1,0 +1,14 @@
+Library
+Applications
+.Trash
+.cache
+.DS_Store
+.docker
+.vscode-oss
+.vscode-oss-shared
+.vscode
+.mac_cpy_overwritten
+.mac_cpy_restore
+Games
+Whisky
+Virtual Machines.localized

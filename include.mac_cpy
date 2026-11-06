@@ -1,0 +1,12 @@
+Library/Application Support/com.mitchellh.ghostty
+Library/Application Support/VSCodium/User/settings.json
+Library/Application Support/Code/User/settings.json
+.vscode-oss/extensions
+.vscode/extensions
+Library/Fonts
+Library/Keyboard Layouts
+Library/Application Support/Firefox/profiles.ini
+Library/Application Support/Firefox/installs.ini
+Library/Application Support/JetBrains/*/{options,keymaps,codestyles,templates,scratches,settingsSync}
+Library/Application Support/Firefox/Profiles/*/{sessionstore.jsonlz4,sessionstore-backups,prefs.js,user.js,xulstore.json,handlers.json,permissions.sqlite,content-prefs.sqlite,search.json.mozlz4,containers.json,chrome}
+Library/Application Support/Firefox/Profile Groups/*.{sqlite,sqlite-wal}

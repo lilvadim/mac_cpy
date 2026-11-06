@@ -1,0 +1,17 @@
+**/.DS_Store
+.config/heroic
+.config/sunshine
+.config/docker
+.local/share/docker
+.local/share/containers
+.local/share/Steam
+.local/share/heroic
+.local/share/lutris
+.android/avd
+.npm/_cacache
+.cargo/registry
+.cargo/git
+.gradle/caches
+.gradle/daemon
+.codex/tmp
+@GITIGNORE
