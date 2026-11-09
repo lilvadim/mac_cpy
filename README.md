@@ -36,7 +36,7 @@ One entry per line, relative to home. Spaces need no quotes; lines starting with
 | --- | --- | --- |
 | [`root_exclude.mac_cpy`](root_exclude.mac_cpy) | `Library`, `Applications`, `Games` | Skip entire top-level entries during ordinary traversal. |
 | [`exclude.mac_cpy`](exclude.mac_cpy) | `.cargo/registry`, `.gradle/caches`, `**/.DS_Store`, `@GITIGNORE` | Exclude paths and enable local `.gitignore` rules. |
-| [`include.mac_cpy`](include.mac_cpy) | `Library/Application Support/VSCodium/User/settings.json`, `.vscode-oss/extensions`, `Library/Application Support/JetBrains/*/{options,keymaps,codestyles}` | Force selected settings and extensions back in. |
+| [`include.mac_cpy`](include.mac_cpy) | `Library/Application Support/VSCodium/User/settings.json`, `.vscode-oss/extensions`, `Library/Application Support/JetBrains` | Force selected settings and extensions back in. |
 
 **Priority:** root exclusions → path exclusions and `.gitignore` → forced includes. An included directory forces its entire subtree, including ignored files. Other home contents are eligible by default: review the supplied rules. [Full configuration guide](docs/usage.md#configuration)
 

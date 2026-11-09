@@ -19,12 +19,6 @@ pub(crate) fn before_backup(selected: &[PathBuf]) -> Result<()> {
     // Add other application-specific consistency checks here.
     require_closed(
         selected,
-        &["Library/Application Support/Firefox"],
-        "firefox|Firefox",
-        "Close Firefox completely before backing up its session and settings",
-    )?;
-    require_closed(
-        selected,
         &[".codex", "Library/Application Support/Codex"],
         "codex|Codex|Codex Helper.*|Codex [(](Service|Renderer)[)]",
         "Close Codex completely (desktop app and CLI sessions) before backing up its data",
@@ -71,7 +65,7 @@ mod tests {
     use std::os::unix::process::ExitStatusExt;
     #[test]
     fn checks_only_selected_scopes_and_rejects_running_processes() {
-        let scopes = &["Library/Application Support/Firefox"];
+        let scopes = &[".codex", "Library/Application Support/Codex"];
         assert!(before_backup(&[]).is_ok());
         assert!(require_closed(&[PathBuf::from("Documents")], scopes, "[", "running").is_ok());
         assert_eq!(

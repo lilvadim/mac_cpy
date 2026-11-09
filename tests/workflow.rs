@@ -1032,44 +1032,32 @@ fn selection_matches_current_contract_and_plain_dry_run_has_no_writes() {
         "Library/Application Support/VSCodium/User/History/drop",
         "Library/Application Support/Zed/drop",
         "Library/DBeaverData/drop",
-        "Library/Application Support/JetBrains/IntelliJIdea2026.2/options/preferences.xml",
-        "Library/Application Support/JetBrains/FutureIDE2040/keymaps/custom.xml",
-        "Library/Application Support/JetBrains/FutureIDE2040/cache.bin",
+        "Library/Application Support/JetBrains/IdeaIC2026.2/options/preferences.xml",
+        "Library/Application Support/JetBrains/RustRover2040/keymaps/custom.xml",
+        "Library/Application Support/JetBrains/RustRover2040/new-settings/custom.bin",
+        "Library/Application Support/JetBrains/RustRover2040/plugins/plugin/settings.xml",
+        "Library/Application Support/JetBrains/RustRover2040/idea.vmoptions",
+        "Library/Application Support/JetBrains/PyCharm2026.3/options/editor.xml",
+        "Library/Application Support/JetBrains/PyCharmCE2025.1/options/editor.xml",
+        "Library/Application Support/JetBrains/CLion2026.3/options/editor.xml",
+        "Library/Application Support/JetBrains/IdeaIC2025.1-backup/options/editor.xml",
+        "Library/Application Support/JetBrains/IntelliJIdea2025.1-backup/drop",
+        "Library/Application Support/JetBrains/Daemon/drop",
+        "Library/Application Support/JetBrains/Toolbox/drop",
+        "Library/Caches/JetBrains/RustRover2040/cache.bin",
+        "Library/Logs/JetBrains/RustRover2040/idea.log",
         "Games/drop",
     ] {
         write(home.join(rel), b"fixture");
     }
-    let ff = home.join("Library/Application Support/Firefox");
-    // Registry contents must not affect selection: only the configured paths matter.
     write(
-        ff.join("profiles.ini"),
-        b"[Profile0]\nName=default-release\nIsRelative=1\nPath=Profiles/not-configured\n",
+        home.join("Library/Application Support/Firefox/Profiles/main/prefs.js"),
+        b"not included",
     );
-    let profiles = [
-        "Library/Application Support/Firefox/Profiles/example.default-release",
-        "Library/Application Support/Firefox/Profiles/another.Profile 1",
-        "Library/Application Support/Firefox/Profiles/new-profile",
-    ];
-    for profile in &profiles {
-        for name in [
-            "sessionstore.jsonlz4",
-            "sessionstore-backups/recovery.jsonlz4",
-            "prefs.js",
-            "places.sqlite",
-            "cookies.sqlite",
-            "logins.json",
-        ] {
-            write(home.join(profile).join(name), b"fixture");
-        }
-    }
-    let groups = [
-        "Library/Application Support/Firefox/Profile Groups/new-group.sqlite",
-        "Library/Application Support/Firefox/Profile Groups/new-group.sqlite-wal",
-    ];
-    for group in &groups {
-        write(home.join(group), b"profile group fixture");
-    }
-    write(ff.join("Profiles/unselected/cache.bin"), b"not included");
+    write(
+        home.join("Documents/Restore Firefox/FirefoxBackup_Main.html"),
+        b"backup fixture",
+    );
     let out = invoke(
         &[
             dst.as_os_str(),
@@ -1097,22 +1085,15 @@ fn selection_matches_current_contract_and_plain_dry_run_has_no_writes() {
         ".vscode-oss/extensions",
         "Documents",
         "Library/Application Support/VSCodium/User/settings.json",
-        "Library/Application Support/JetBrains/IntelliJIdea2026.2/options",
-        "Library/Application Support/JetBrains/FutureIDE2040/keymaps",
+        "Library/Application Support/JetBrains",
     ] {
         assert!(included.lines().any(|l| l == rel), "missing {rel}");
     }
-    for profile in profiles {
-        for suffix in ["sessionstore.jsonlz4", "sessionstore-backups", "prefs.js"] {
-            let rel = format!("{profile}/{suffix}");
-            assert!(included.lines().any(|l| l == rel), "missing {rel}");
-        }
-    }
-    for group in groups {
-        assert!(included.lines().any(|l| l == group), "missing {group}");
-    }
     for excluded in [
         "DBeaver",
+        "Support/Firefox",
+        "Caches/JetBrains",
+        "Logs/JetBrains",
         "Support/Zed",
         "History",
         "places.sqlite",

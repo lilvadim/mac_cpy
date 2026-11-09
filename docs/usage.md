@@ -17,7 +17,7 @@ This is a file migration tool, not a bootable system image or a replacement for 
 
 The Apple Silicon deployment target is **macOS 11.0 Big Sur**, set in [`.cargo/config.toml`](../.cargo/config.toml). This is a build target, not a claim that the program has been runtime-tested on Big Sur. Dependencies are locked in `Cargo.lock`. Homebrew and individual applications have separate OS requirements.
 
-Close source applications and stop builds before backing up. If selected data contains Firefox or Codex data, a real backup checks their processes and requires them to be closed. The program never closes them automatically. Dry runs and metadata-only backups do not perform this process check.
+Close source applications and stop builds before backing up. If selected data contains Codex data, a real backup checks its processes and requires it to be closed. The program never closes it automatically. Dry runs and metadata-only backups do not perform this process check.
 
 ## Build and install
 
@@ -123,7 +123,7 @@ myprojects/**/target
 ```text
 # include.mac_cpy examples
 Library/Application Support/VSCodium/User/settings.json
-Library/Application Support/JetBrains/*/{options,keymaps,codestyles}
+Library/Application Support/JetBrains
 ```
 
 ### Local .gitignore files
@@ -138,10 +138,10 @@ The directive is recognized only as an exact trimmed line; `./@GITIGNORE` is an 
 
 Most home contents, including dotfiles, are selected by default. The supplied configuration then excludes broad roots and selected generated data; inspect the linked configuration files for the exact lists.
 
-- `Library` is excluded except for explicit includes: Ghostty application support, VS Code/VSCodium `User/settings.json`, user fonts and keyboard layouts, selected JetBrains settings, and selected Firefox files.
+- `Library` is excluded except for explicit includes: Ghostty application support, VS Code/VSCodium `User/settings.json`, user fonts and keyboard layouts, complete JetBrains IDE configuration directories.
 - VS Code/VSCodium extension directories `.vscode/extensions` and `.vscode-oss/extensions` are included again. Keybindings, snippets, editor profiles, history, and workspace/global storage are not explicitly selected from `Library`.
-- JetBrains includes `options`, `keymaps`, `codestyles`, `templates`, `scratches`, and `settingsSync` below each matching application/version directory.
-- Firefox includes registration files, settings, tabs/session backups, selected permissions/search/container data, `chrome`, and profile-group SQLite/WAL files. All profiles in the standard `Profiles/*` directory match; external profile locations require extra rules. Bookmarks/history, cookies, saved passwords, and extensions are not explicitly included.
+- The entire `Library/Application Support/JetBrains` directory is included: IDE settings, installed plugins, scratches, custom VM options/properties, old version directories, settings backups, Toolbox, and Daemon data. Standard caches/Local History under `Library/Caches/JetBrains` and logs under `Library/Logs/JetBrains` remain excluded. Custom IDE storage locations require additional rules. Close JetBrains IDEs and Toolbox before backup and restore; their processes are not checked automatically.
+- Firefox profile files are not explicitly included. Enable Firefox’s built-in backup and keep its backup file under an included path, such as `Documents/Restore Firefox`. This copies the latest saved backup; Firefox does not need to be closed for that file.
 - Applications, Trash, selected game/VM roots, Docker data paths, Android AVDs, selected package caches, and `.codex/tmp` are excluded. There is no universal game/container-data detector: other locations remain subject to ordinary rules.
 - Homebrew's installation directory and `etc` are not copied as separate sources. Application binaries in excluded application folders are not copied; the service copy of `mac_cpy` is included.
 
