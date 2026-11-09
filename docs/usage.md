@@ -1,6 +1,6 @@
 # mac_cpy
 
-[Quick start](../README.md) · [Русская версия](usage_ru.md)
+[Quick start](../README.md)
 
 Selective macOS home-directory backup and restore, written in Rust. Files are streamed directly into a `.tar.gz` archive at the destination using macOS's built-in `/usr/bin/tar`. No second local copy of the selected data is created.
 

@@ -2,7 +2,7 @@
 
 Small, configurable macOS backups for developers and Homebrew users. Save your projects, dotfiles, and selected application settings in a compressed archive; reinstall software from a Brewfile.
 
-[English documentation](docs/usage.md) · [Документация на русском](docs/usage_ru.md)
+[Documentation](docs/usage.md)
 
 - **Smaller backups:** skip reproducible caches, build output, and app binaries according to your rules, then gzip the selected data.
 - **Flexible configuration:** three text files, home-relative paths, and Unix globs. Explicit includes override exclusions.
@@ -98,4 +98,4 @@ diff -u /etc/hosts "$HOME/.mac_cpy_restore/metadata/hosts"
 
 **Archives are not encrypted and may contain secrets.** Restore only trusted archives. This is selective file migration; data from newer application versions may not work on older ones.
 
-[Full guide: English](docs/usage.md) · [Полное руководство: русский](docs/usage_ru.md) · [BSD 3-Clause licence](LICENCE)
+[Full guide](docs/usage.md) · [BSD 3-Clause licence](LICENCE)
