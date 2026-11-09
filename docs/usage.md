@@ -138,7 +138,8 @@ The directive is recognized only as an exact trimmed line; `./@GITIGNORE` is an 
 
 Most home contents, including dotfiles, are selected by default. The supplied configuration then excludes broad roots and selected generated data; inspect the linked configuration files for the exact lists.
 
-- `Library` is excluded except for explicit includes: Ghostty application support, VS Code/VSCodium `User/settings.json`, user fonts and keyboard layouts, complete JetBrains IDE configuration directories.
+- `Library` is excluded except for explicit includes: VS Code/VSCodium `User/settings.json`, user fonts and keyboard layouts, complete JetBrains IDE configuration directories.
+- Ghostty configuration under `.config/ghostty` is included through normal home selection; its macOS Application Support directory is not explicitly included.
 - VS Code/VSCodium extension directories `.vscode/extensions` and `.vscode-oss/extensions` are included again. Keybindings, snippets, editor profiles, history, and workspace/global storage are not explicitly selected from `Library`.
 - The entire `Library/Application Support/JetBrains` directory is included: IDE settings, installed plugins, scratches, custom VM options/properties, old version directories, settings backups, Toolbox, and Daemon data. Standard caches/Local History under `Library/Caches/JetBrains` and logs under `Library/Logs/JetBrains` remain excluded. Custom IDE storage locations require additional rules. Close JetBrains IDEs and Toolbox before backup and restore; their processes are not checked automatically.
 - Firefox profile files are not explicitly included. Enable Firefox’s built-in backup and keep its backup file under an included path, such as `Documents/Restore Firefox`. This copies the latest saved backup; Firefox does not need to be closed for that file.

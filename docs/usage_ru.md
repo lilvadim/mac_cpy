@@ -138,7 +138,8 @@ Library/Application Support/JetBrains
 
 По умолчанию выбирается большинство содержимого home, включая dotfiles. Затем конфиги исключают широкие корни и отдельные генерируемые данные. Точные списки находятся в трёх файлах по ссылкам выше.
 
-- `Library` исключена, кроме явных включений: данные Ghostty, `User/settings.json` VS Code/VSCodium, пользовательские шрифты и раскладки, полные каталоги конфигурации IDE JetBrains.
+- `Library` исключена, кроме явных включений: `User/settings.json` VS Code/VSCodium, пользовательские шрифты и раскладки, полные каталоги конфигурации IDE JetBrains.
+- Конфигурация Ghostty в `.config/ghostty` включена обычным выбором home; каталог Ghostty в macOS Application Support явно не включён.
 - Каталоги расширений `.vscode/extensions` и `.vscode-oss/extensions` включены обратно. Горячие клавиши, сниппеты, профили редактора, история и workspace/global storage из `Library` явно не выбираются.
 - Целиком включён каталог `Library/Application Support/JetBrains`: настройки IDE, установленные плагины, scratches, VM options/properties, папки старых версий, резервные настройки, данные Toolbox и Daemon. Стандартные кеши/Local History в `Library/Caches/JetBrains` и логи в `Library/Logs/JetBrains` остаются исключёнными. Для нестандартных путей хранения IDE нужны дополнительные правила. Перед бэкапом и восстановлением закройте IDE JetBrains и Toolbox; их процессы автоматически не проверяются.
 - Файлы профилей Firefox явно не включены. Включите встроенный бэкап Firefox и сохраняйте его файл по включённому пути, например `Documents/Restore Firefox`. Копируется последняя сохранённая копия; для копирования этого файла закрывать Firefox не требуется.
